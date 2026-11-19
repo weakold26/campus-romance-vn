@@ -14,23 +14,24 @@
 
   var ASSETS = {
     bg: {
-      campus_day: 'assets/img/campus_day.webp?v=5',
-      library: 'assets/img/library.webp?v=5',
-      clubroom: 'assets/img/clubroom.webp?v=5',
-      campus_night: 'assets/img/campus_night.webp?v=5'
+      campus_day: 'assets/img/campus_day.webp?v=6',
+      library: 'assets/img/library.webp?v=6',
+      clubroom: 'assets/img/clubroom.webp?v=6',
+      campus_night: 'assets/img/campus_night.webp?v=6',
+      auditorium: 'assets/img/auditorium.webp?v=6'
     },
     char: {
       seoyun: {
-        base: 'assets/img/seoyun_base.webp?v=5',
-        blush: 'assets/img/seoyun_blush.webp?v=5',
-        surprised: 'assets/img/seoyun_surprised.webp?v=5',
-        serious: 'assets/img/seoyun_serious.webp?v=5'
+        base: 'assets/img/seoyun_base.webp?v=6',
+        blush: 'assets/img/seoyun_blush.webp?v=6',
+        surprised: 'assets/img/seoyun_surprised.webp?v=6',
+        serious: 'assets/img/seoyun_serious.webp?v=6'
       },
       chaewon: {
-        base: 'assets/img/chaewon_base.webp?v=5',
-        blush: 'assets/img/chaewon_blush.webp?v=5',
-        surprised: 'assets/img/chaewon_surprised.webp?v=5',
-        serious: 'assets/img/chaewon_serious.webp?v=5'
+        base: 'assets/img/chaewon_base.webp?v=6',
+        blush: 'assets/img/chaewon_blush.webp?v=6',
+        surprised: 'assets/img/chaewon_surprised.webp?v=6',
+        serious: 'assets/img/chaewon_serious.webp?v=6'
       }
     }
   };
@@ -405,6 +406,14 @@
 
     // 선택지만 있는 노드: 직전 대사를 그대로 두고 선택지를 띄운다
     if (!n.text && n.choices) {
+      if (!$('text').textContent && history.length) {
+        var last = history[history.length - 1];
+        $('text').textContent = last.text;
+        var lastKey = whoKey(last.who);
+        $('namebox').classList.toggle('on', !!last.who);
+        $('name').textContent = last.who || '';
+        $('namebox').dataset.who = lastKey || 'other';
+      }
       $('next-ind').classList.remove('hot', 'done');
       showChoices(n.choices);
       return;

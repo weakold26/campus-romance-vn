@@ -14,7 +14,7 @@ CHARS = {
     "seoyun": ("seo", ["base", "blush", "surprised", "serious"]),
     "chaewon": ("chae", ["base", "blush", "surprised", "serious"]),
 }
-BGS = ["bg_campus_day", "bg_library", "bg_clubroom", "bg_campus_night"]
+BGS = ["bg_campus_day", "bg_library", "bg_clubroom", "bg_campus_night", "bg_auditorium"]
 
 CANVAS_W, CANVAS_H = 1024, 1400
 HEAD_TOP = 84          # 캔버스 위에서 머리 꼭대기 위치

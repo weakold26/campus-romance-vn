@@ -18,7 +18,7 @@ with open(PATH, encoding="utf-8") as f:
     data = json.load(f)
 nodes, meta = data["nodes"], data["meta"]
 HERO = list(meta["heroines"].keys())
-BGS = {"campus_day", "library", "clubroom", "campus_night"}
+BGS = {"campus_day", "library", "clubroom", "campus_night", "auditorium"}
 EXPRS = {"base", "blush", "surprised", "serious"}
 errors, warnings = [], []
 
