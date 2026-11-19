@@ -400,6 +400,13 @@
     box.innerHTML = '';
     box.classList.remove('on');
 
+    // 선택지만 있는 노드: 직전 대사를 그대로 두고 선택지를 띄운다
+    if (!n.text && n.choices) {
+      $('next-ind').classList.remove('hot', 'done');
+      showChoices(n.choices);
+      return;
+    }
+
     var nameEl = $('namebox');
     var key = whoKey(n.who);
     if (n.who) {
