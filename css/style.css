@@ -476,7 +476,7 @@ body:not(.is-title) #dialogue { opacity: 1; transform: none; }
 .title-bg {
   position: absolute;
   inset: 0;
-  background: url('../assets/img/campus_day.webp?v=1') center 46% / cover no-repeat;
+  background: url('../assets/img/campus_day.webp?v=2') center 46% / cover no-repeat;
   filter: saturate(0.98) brightness(0.94);
   transform: scale(1.06);
   animation: drift 28s ease-in-out infinite alternate;

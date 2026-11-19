@@ -14,23 +14,23 @@
 
   var ASSETS = {
     bg: {
-      campus_day: 'assets/img/campus_day.webp?v=1',
-      library: 'assets/img/library.webp?v=1',
-      clubroom: 'assets/img/clubroom.webp?v=1',
-      campus_night: 'assets/img/campus_night.webp?v=1'
+      campus_day: 'assets/img/campus_day.webp?v=2',
+      library: 'assets/img/library.webp?v=2',
+      clubroom: 'assets/img/clubroom.webp?v=2',
+      campus_night: 'assets/img/campus_night.webp?v=2'
     },
     char: {
       seoyun: {
-        base: 'assets/img/seoyun_base.webp?v=1',
-        blush: 'assets/img/seoyun_blush.webp?v=1',
-        surprised: 'assets/img/seoyun_surprised.webp?v=1',
-        serious: 'assets/img/seoyun_serious.webp?v=1'
+        base: 'assets/img/seoyun_base.webp?v=2',
+        blush: 'assets/img/seoyun_blush.webp?v=2',
+        surprised: 'assets/img/seoyun_surprised.webp?v=2',
+        serious: 'assets/img/seoyun_serious.webp?v=2'
       },
       chaewon: {
-        base: 'assets/img/chaewon_base.webp?v=1',
-        blush: 'assets/img/chaewon_blush.webp?v=1',
-        surprised: 'assets/img/chaewon_surprised.webp?v=1',
-        serious: 'assets/img/chaewon_serious.webp?v=1'
+        base: 'assets/img/chaewon_base.webp?v=2',
+        blush: 'assets/img/chaewon_blush.webp?v=2',
+        surprised: 'assets/img/chaewon_surprised.webp?v=2',
+        serious: 'assets/img/chaewon_serious.webp?v=2'
       }
     }
   };
