@@ -659,7 +659,7 @@ body.is-ending #next-ind { opacity: 0 !important; transition: opacity 0.5s ease;
   color: rgba(255, 248, 234, 0.7);
   word-break: keep-all;
 }
-.ending-progress { margin: 22px 0 18px; font-size: 11px; letter-spacing: 0.14em; color: rgba(255, 255, 255, 0.42); }
+.ending-progress { margin: 22px 0 18px; font-size: 11px; letter-spacing: 0.14em; color: rgba(255, 248, 234, 0.62); }
 .ending-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 .ending-btns .btn { min-width: 150px; }
 
@@ -782,9 +782,10 @@ body.is-ending #next-ind { opacity: 0 !important; transition: opacity 0.5s ease;
 @media (max-width: 720px) {
   .ui-layer { padding: 0 10px calc(10px + var(--safe-b)); gap: 17px; }
   #btn-load { display: none; }
-  .char { height: 92%; bottom: -4%; }
-  #char-layer.two .char--main { left: 27%; height: 82%; bottom: -1%; }
-  #char-layer.two .char--side { left: 72%; height: 82%; bottom: -1%; }
+  #btn-save { display: none; }
+  .char { height: 88%; bottom: -3%; }
+  #char-layer.two .char--main { left: 26%; height: 72%; bottom: 0; }
+  #char-layer.two .char--side { left: 73%; height: 72%; bottom: 0; }
   #dialogue { padding: 18px 17px 22px; border-radius: 15px; min-height: 108px; }
   #namebox { left: 14px; top: -14px; font-size: 12.5px; padding: 5px 15px; }
   #text { font-size: 15.5px; line-height: 1.84; min-height: 3.2em; }
