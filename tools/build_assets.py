@@ -82,6 +82,69 @@ def alpha_of(path):
     pale = (rgb.max(axis=2) >= 246) & ((rgb.max(axis=2) - rgb.min(axis=2)) <= 8)
     alpha[near_out & pale] = 0
 
+    # 실루엣 가장자리에 남은 흰색을 안쪽 색으로 바꾼다 (흰 테 제거)
+    core = (alpha > 200) & (rgb.max(axis=2) < 236)
+    if core.any():
+        ind = ndimage.distance_transform_edt(~core, return_distances=False, return_indices=True)
+        nearest = rgb[ind[0], ind[1]]
+        outside2 = alpha < 16
+        near2 = ndimage.binary_dilation(outside2, iterations=6)
+        pale2 = (rgb.max(axis=2) >= 232) & ((rgb.max(axis=2) - rgb.min(axis=2)) <= 20)
+        fix = near2 & pale2 & (alpha > 0)
+        rgb[fix] = nearest[fix]
+
+    # 머리카락 사이로 남은 얇은 흰 틈을 주변 색으로 메운다 (넓은 흰 소품은 그대로)
+    pale3 = (rgb.max(axis=2) >= 235) & ((rgb.max(axis=2) - rgb.min(axis=2)) <= 26) & (alpha > 30)
+    thick = ndimage.binary_opening(pale3, structure=np.ones((5, 5)))
+    core3 = (alpha > 200) & ~pale3
+    if core3.any():
+        ind3 = ndimage.distance_transform_edt(~core3, return_distances=False, return_indices=True)
+        near3 = rgb[ind3[0], ind3[1]]
+        fill3 = pale3 & ~thick
+        rgb[fill3] = near3[fill3]
+
+    # 흰 배경이 반투명하게 남은 테두리는 지운다
+    pale_hard = (rgb.max(axis=2) >= 232) & ((rgb.max(axis=2) - rgb.min(axis=2)) <= 22)
+    alpha[pale_hard & (alpha < 200)] = 0
+
+    # 실루엣 바로 바깥에 갇힌 흰 테 제거 (테두리 3px)
+    out_zone = ndimage.binary_dilation(alpha < 8, iterations=3)
+    pale5 = (rgb.max(axis=2) >= 240) & ((rgb.max(axis=2) - rgb.min(axis=2)) <= 16)
+    alpha[out_zone & pale5] = 0
+
+    # 테두리를 4px 깎아 흰 테·잔여 배경 조각을 없앤다
+    alpha[alpha < 150] = 0
+    al3 = Image.fromarray(alpha.astype(np.uint8), "L")
+    al3 = al3.filter(ImageFilter.MinFilter(9)).filter(ImageFilter.GaussianBlur(1.0))
+    alpha = np.asarray(al3).astype(np.float32)
+
+    # 머리카락 사이에 갇힌 작은 흰 배경 조각 제거 (얼굴 위쪽 영역만)
+    H = alpha.shape[0]
+    pale4 = (rgb.max(axis=2) >= 238) & ((rgb.max(axis=2) - rgb.min(axis=2)) <= 16) & (alpha > 40)
+    lab4, n4 = ndimage.label(pale4)
+    for i in range(1, n4 + 1):
+        blob = lab4 == i
+        ar = int(blob.sum())
+        if ar < 8 or ar > 2600:
+            continue
+        ys, xs = np.where(blob)
+        if ys.mean() < H * 0.33:
+            alpha[blob] = 0
+
+    # 다리 사이처럼 가늘고 긴 흰 틈 제거 (아래쪽 포함)
+    pale6 = (rgb.max(axis=2) >= 240) & ((rgb.max(axis=2) - rgb.min(axis=2)) <= 16) & (alpha > 40)
+    lab6, n6 = ndimage.label(pale6)
+    for i in range(1, n6 + 1):
+        blob = lab6 == i
+        ar = int(blob.sum())
+        if ar < 120:
+            continue
+        ys, xs = np.where(blob)
+        bw = xs.max() - xs.min() + 1
+        bh = ys.max() - ys.min() + 1
+        if bw <= 46 and bh >= 90:
+            alpha[blob] = 0
+
     # 흰 배경과 섞인 반투명 가장자리 색 되돌리기
     av = np.clip(alpha / 255.0, 0.0, 1.0)[..., None]
     un = (rgb - 255.0 * (1.0 - av)) / np.maximum(av, 0.08)

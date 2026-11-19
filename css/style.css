@@ -484,7 +484,7 @@ body:not(.is-title) #dialogue { opacity: 1; transform: none; }
 .title-bg {
   position: absolute;
   inset: 0;
-  background: url('../assets/img/campus_day.webp?v=4') center 46% / cover no-repeat;
+  background: url('../assets/img/campus_day.webp?v=5') center 46% / cover no-repeat;
   filter: saturate(0.98) brightness(0.94);
   transform: scale(1.06);
   animation: drift 28s ease-in-out infinite alternate;
@@ -612,7 +612,7 @@ body:not(.is-title) #dialogue { opacity: 1; transform: none; }
 body:not(.loading) .loader { opacity: 0; transition: opacity 0.6s; }
 
 .credit {
-  margin: 20px 0 0;
+  margin: 26px 0 0;
   font-size: 9px;
   letter-spacing: 0.3em;
   color: rgba(255, 248, 234, 0.32);
