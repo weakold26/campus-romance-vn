@@ -90,7 +90,7 @@ body { overflow: hidden; }
 }
 .char.on { opacity: 1; transform: translateX(-50%) translateY(0); }
 .char.dim {
-  filter: drop-shadow(0 18px 34px rgba(30, 20, 18, 0.36)) brightness(0.66) saturate(0.78);
+  filter: drop-shadow(0 18px 34px rgba(30, 20, 18, 0.36)) brightness(0.58) saturate(0.74);
 }
 
 #char-layer.two .char--main { left: 33%; height: 98%; bottom: -7%; }
