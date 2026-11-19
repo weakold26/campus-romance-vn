@@ -1,0 +1,42 @@
+{
+ "title": "도서관 창가 3번 자리",
+ "subtitle": "시험기간 5일, 축제 전야의 캠퍼스 로맨스",
+ "heroines": {
+  "seoyun": { "name": "한서윤", "role": "3학년 · 과 대표", "color": "#c96a7e" },
+  "chaewon": { "name": "문채원", "role": "1학년 · 영화동아리 후배", "color": "#d99a3c" }
+ },
+ "endings": {
+  "seoyun_happy": {
+   "no": "01",
+   "label": "HAPPY END",
+   "title": "내일도, 3번 자리",
+   "desc": "시험이 끝나도 창가는 그대로였다. 이제 그 자리에는 두 사람의 가방이 나란히 놓인다."
+  },
+  "seoyun_normal": {
+   "no": "02",
+   "label": "NORMAL END",
+   "title": "메모의 필체",
+   "desc": "말 대신 책갈피에 남은 짧은 문장. 답장을 쓰지 못한 채로도, 다음 학기에 다시 만날 것을 안다."
+  },
+  "chaewon_happy": {
+   "no": "03",
+   "label": "HAPPY END",
+   "title": "엔딩 크레딧",
+   "desc": "상영이 끝난 뒤 스크린 맨 마지막 줄. 그 이름이 자기 이름이라는 걸 알아차린 후배가 울먹였다."
+  },
+  "chaewon_normal": {
+   "no": "04",
+   "label": "NORMAL END",
+   "title": "다음 학기의 신입",
+   "desc": "후배는 이제 혼자서도 편집을 끝낸다. 대신 커피를 사러 갈 때는 늘 두 잔을 산다."
+  },
+  "true_end": {
+   "no": "05",
+   "label": "HIDDEN END",
+   "title": "세 사람의 마지막 장면",
+   "desc": "3번 자리에서 시작된 이야기는 아직 끝나지 않았다. 다음 학기의 누군가에게 카드를 한 장 남기며."
+  }
+ },
+ "affMax": 21,
+ "start": "n0001"
+}
