@@ -308,7 +308,7 @@ body:not(.is-title) .aff { opacity: 1; }
   backdrop-filter: blur(14px) saturate(1.02);
   -webkit-backdrop-filter: blur(14px) saturate(1.02);
   pointer-events: auto;
-  min-height: 120px;
+  min-height: 108px;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.4s ease, transform 0.4s ease;
