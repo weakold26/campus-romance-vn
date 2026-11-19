@@ -20,7 +20,7 @@ CANVAS_W, CANVAS_H = 1024, 1400
 HEAD_TOP = 84          # 캔버스 위에서 머리 꼭대기 위치
 TARGET_HEAD_W = 300    # 얼굴(머리) 폭 기준
 
-MX_T, SAT_T, ERODE, BLUR = 250, 9, 3, 0.7
+MX_T, SAT_T, ERODE, BLUR = 250, 9, 5, 0.8
 
 
 def alpha_of(path):
@@ -64,10 +64,28 @@ def alpha_of(path):
     mn2 = out.min(axis=2)
     white = (mx2 >= 248) & ((mx2 - mn2) <= 8) & (alpha > 60)
     lab, n = ndimage.label(white)
+    sil_w = alpha.shape[1]
     for i in range(1, n + 1):
         blob = lab == i
-        if blob.sum() >= 400:
+        if blob.sum() < 400:
+            continue
+        ys, xs = np.where(blob)
+        bw = xs.max() - xs.min() + 1
+        bh = ys.max() - ys.min() + 1
+        # 다리 사이처럼 가늘고 긴 틈만 지운다 (흰 소품·옷은 남긴다)
+        if bw <= sil_w * 0.22 or (bh >= 250 and bw <= 60):
             alpha[blob] = 0
+
+    # 흰 배경과 바로 맞닿은 1px 테두리만 정리 (흰 소품을 먹지 않도록)
+    outside = alpha < 24
+    near_out = ndimage.binary_dilation(outside, iterations=1)
+    pale = (rgb.max(axis=2) >= 246) & ((rgb.max(axis=2) - rgb.min(axis=2)) <= 8)
+    alpha[near_out & pale] = 0
+
+    # 흰 배경과 섞인 반투명 가장자리 색 되돌리기
+    av = np.clip(alpha / 255.0, 0.0, 1.0)[..., None]
+    un = (rgb - 255.0 * (1.0 - av)) / np.maximum(av, 0.08)
+    rgb = np.where(av > 0.08, np.clip(un, 0, 255), rgb)
 
     # 실루엣과 떨어진 작은 티끌 제거
     mask = alpha > 0

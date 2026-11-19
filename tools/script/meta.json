@@ -2,8 +2,16 @@
  "title": "도서관 창가 3번 자리",
  "subtitle": "시험기간 5일, 축제 전야의 캠퍼스 로맨스",
  "heroines": {
-  "seoyun": { "name": "한서윤", "role": "3학년 · 과 대표", "color": "#c96a7e" },
-  "chaewon": { "name": "문채원", "role": "1학년 · 영화동아리 후배", "color": "#d99a3c" }
+  "seoyun": {
+   "name": "한서윤",
+   "role": "3학년 · 과 대표",
+   "color": "#c96a7e"
+  },
+  "chaewon": {
+   "name": "문채원",
+   "role": "1학년 · 영화동아리 후배",
+   "color": "#d99a3c"
+  }
  },
  "endings": {
   "seoyun_happy": {
@@ -37,6 +45,6 @@
    "desc": "3번 자리에서 시작된 이야기는 아직 끝나지 않았다. 다음 학기의 누군가에게 카드를 한 장 남기며."
   }
  },
- "affMax": 21,
+ "affMax": 25,
  "start": "n0001"
 }

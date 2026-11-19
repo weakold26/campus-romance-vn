@@ -14,23 +14,23 @@
 
   var ASSETS = {
     bg: {
-      campus_day: 'assets/img/campus_day.webp?v=3',
-      library: 'assets/img/library.webp?v=3',
-      clubroom: 'assets/img/clubroom.webp?v=3',
-      campus_night: 'assets/img/campus_night.webp?v=3'
+      campus_day: 'assets/img/campus_day.webp?v=4',
+      library: 'assets/img/library.webp?v=4',
+      clubroom: 'assets/img/clubroom.webp?v=4',
+      campus_night: 'assets/img/campus_night.webp?v=4'
     },
     char: {
       seoyun: {
-        base: 'assets/img/seoyun_base.webp?v=3',
-        blush: 'assets/img/seoyun_blush.webp?v=3',
-        surprised: 'assets/img/seoyun_surprised.webp?v=3',
-        serious: 'assets/img/seoyun_serious.webp?v=3'
+        base: 'assets/img/seoyun_base.webp?v=4',
+        blush: 'assets/img/seoyun_blush.webp?v=4',
+        surprised: 'assets/img/seoyun_surprised.webp?v=4',
+        serious: 'assets/img/seoyun_serious.webp?v=4'
       },
       chaewon: {
-        base: 'assets/img/chaewon_base.webp?v=3',
-        blush: 'assets/img/chaewon_blush.webp?v=3',
-        surprised: 'assets/img/chaewon_surprised.webp?v=3',
-        serious: 'assets/img/chaewon_serious.webp?v=3'
+        base: 'assets/img/chaewon_base.webp?v=4',
+        blush: 'assets/img/chaewon_blush.webp?v=4',
+        surprised: 'assets/img/chaewon_surprised.webp?v=4',
+        serious: 'assets/img/chaewon_serious.webp?v=4'
       }
     }
   };
@@ -275,9 +275,12 @@
       setChar('side', n.show2.id, n.show2.expr);
     }
 
-    if (spk && n.e) {
-      if (chars.main && chars.main.id === spk) setChar('main', spk, n.e);
-      else if (chars.side && chars.side.id === spk) setChar('side', spk, n.e);
+    if (spk) {
+      var expr = n.e || (n.who ? 'base' : null);
+      if (expr) {
+        if (chars.main && chars.main.id === spk) setChar('main', spk, expr);
+        else if (chars.side && chars.side.id === spk) setChar('side', spk, expr);
+      }
     }
     if (spk && !(chars.main && chars.main.id === spk) && !(chars.side && chars.side.id === spk)) {
       setChar('main', spk, n.e || 'base');
